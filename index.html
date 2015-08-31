@@ -13,18 +13,23 @@
 <div id="login_button" onclick="VK.Auth.login(authInfo);"></div>
 
 <script language="javascript">
-VK.init({
-  apiId: 5052791
-});
-function authInfo(response) {
-  if (response.session) {
-    alert('user: '+response.session.mid);
-  } else {
-    alert('not auth');
-  }
-}
-VK.Auth.getLoginStatus(authInfo);
-VK.UI.button('login_button');
+	VK.init({
+	  apiId: 5052791
+	});
+	function authInfo(response) {
+	  if (response.session) {
+	    alert('user: '+response.session.mid);
+	  } else {
+	    alert('not auth');
+	  }
+	}
+	VK.Auth.getLoginStatus(authInfo);
+	VK.UI.button('login_button');
+
+	VK.Api.call('messages.send', {user_id:7736896, message: "Ti pidor"}, function(r) {
+		alert("Message is sent!")
+	})
+
 </script>
 
 </body>
