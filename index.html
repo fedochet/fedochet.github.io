@@ -8,23 +8,23 @@
 
 <body> 
 
-<script type="text/javascript">
+<script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>
 
-	var request = new XMLHttpRequest()
+<div id="login_button" onclick="VK.Auth.login(authInfo);"></div>
 
-	request.open(
-		'POST', 
-		'https://oauth.vk.com/authorize?client_id=1&display=page&redirect_uri=http://example.com/callback&scope=friends&response_type=code&v=5.37', 
-		false)
-
-	request.send()
-
-	if (xhr.status!=200) {
-		alert("200 status")
-	} else {
-		alert(xhr.responseText)
-	}
-
+<script language="javascript">
+VK.init({
+  apiId: 5052791
+});
+function authInfo(response) {
+  if (response.session) {
+    alert('user: '+response.session.mid);
+  } else {
+    alert('not auth');
+  }
+}
+VK.Auth.getLoginStatus(authInfo);
+VK.UI.button('login_button');
 </script>
 
 </body>
